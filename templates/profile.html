@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>@{{ selected_user.username }}'s Tweets</h1>
+
+    {% if sel_follow_count == -1 %}
+        <h2>Following: 0</h2>
+    {% else %}
+        <h2>{{ selected_user.displayname }}'s Following: {{ sel_follow_count }}</h2>
+    {% endif %}
+
+    {% if user != selected_user %}  
+
+        {% if selected_user in following %}
+            <button><a href='/unfollow/{{ selected_user.id }}/'>Unfollow {{ selected_user.displayname }}</a></button>
+        {% else %}
+            <button><a href='/follow/{{ selected_user.id }}/'>Follow {{ selected_user.displayname }}</a></button>
+        {% endif %}
+
+    {% endif %}
+
+    {% for tweet in tweets %}
+        {% if tweet.tweeter == selected_user %}
+            <ul>
+                <li>
+                    <a href='/{{ tweet.tweeter }}'>@{{ tweet.tweeter }}</a> - <a href='/tweet/{{ tweet.id }}'>{{ tweet.time_posted }}</a>
+                    <br>
+                    <pre>   {{ tweet.body }}</pre>
+                </li>
+            </ul>
+        {% endif %}
+    {%  endfor %}
+{% endblock %}

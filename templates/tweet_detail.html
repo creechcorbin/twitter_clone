@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>
+        <a href='/{{ tweet.tweeter }}'>@{{ tweet.tweeter }}</a> - {{ tweet.time_posted }}
+        <br>
+        <pre>   {{ tweet.body }}</pre>
+    </h1>
+{% endblock %}

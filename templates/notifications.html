@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Your Notifications!</h1>
+
+    {% for notification in unread %}
+        {% if notification.notifying_tweet.tweeter != user %}
+                <ul>
+                    <li>
+                        <a href='/{{ notification.notifying_tweet.tweeter }}'>@{{ notification.notifying_tweet.tweeter }}</a> - <a href='/tweet/{{ notification.notifying_tweet.id }}'>{{ notification.notifying_tweet.time_posted }}</a>
+                        <br>
+                        <pre>   {{ notification.notifying_tweet.body }}</pre>
+                    </li>
+                </ul>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

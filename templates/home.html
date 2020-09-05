@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome!</h1>
+    {% for tweet in tweets %}
+        {% if tweet.tweeter in following %}
+            <ul>
+                <li>
+                    <a href='/{{ tweet.tweeter }}'>@{{ tweet.tweeter }}</a> - <a href='/tweet/{{ tweet.id }}'>{{ tweet.time_posted }}</a>
+                    <br>
+                    <pre>   {{ tweet.body }}</pre>
+                </li>
+            </ul>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

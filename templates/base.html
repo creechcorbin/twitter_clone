@@ -1,0 +1,25 @@
+<div class='container'>
+    <div class='navbar'>
+        <button><a href='/'>Home</a></button>
+        <button><a href='/addtweet/'>Say Something</a></button>
+        <button><a href='/{{ request.user }}/'>My Profile</a></button>
+        <button><a href='/notifications/'>Notifications</a></button>
+        <button><a href='/logout/'>Logout</a></button>
+    </div>
+    <div class='profile'>
+        <hr>
+        <h3>Username: @{{ request.user }}</h3>
+        <h3>Displayname: {{ request.user.displayname }}</h3>
+        <h3>Tweets: {{ request.user.num_of_tweets }}</h3>
+        {% if follow_count == -1 %}
+            <h3>Following: 0</h3>
+        {% else %}
+            <h3>Following: {{ follow_count }}</h3>
+        {% endif %}
+        <hr>
+    </div>
+    <div class='fill'>
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
